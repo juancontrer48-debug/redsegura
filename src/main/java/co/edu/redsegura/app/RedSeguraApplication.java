@@ -15,7 +15,7 @@ public class RedSeguraApplication {
         RedSeguraCore core = new RedSeguraCore();
         Scanner in = new Scanner(System.in);
         System.out.println("=== RedSegura Sincelejo ===");
-        System.out.println("(Tiempos didácticos de simulación, no oficiales.)");
+        System.out.println("(Tiempos didacticos de simulacion, no oficiales.)");
 
         boolean running = true;
         while (running) {
@@ -31,7 +31,7 @@ public class RedSeguraApplication {
                     case "6" -> q6(core);
                     case "7" -> q7(core, in);
                     case "0" -> running = false;
-                    default -> System.out.println("Opción no válida.");
+                    default -> System.out.println("Opcion no valida.");
                 }
             } catch (IllegalArgumentException ex) {
                 System.out.println("Error controlado: " + ex.getMessage());
@@ -41,16 +41,16 @@ public class RedSeguraApplication {
     }
 
     private static void printMenu() {
-        System.out.println("\n--- Menú ---");
+        System.out.println("\n--- Menu ---");
         System.out.println("1. Q1: Buscar lugar en ABB y AVL");
         System.out.println("2. Q2: Rotaciones AVL (LL, RR, LR, RL)");
         System.out.println("3. Q3: Lista y matrices del grafo");
-        System.out.println("4. Q4: BFS y DFS desde un vértice");
-        System.out.println("5. Q5: Ruta mínima S02 -> S08");
+        System.out.println("4. Q4: BFS y DFS desde un vertice");
+        System.out.println("5. Q5: Ruta minima S02 -> S08");
         System.out.println("6. Q6: Bloquear R16 y recalcular");
-        System.out.println("7. Q7: Consultar un vértice");
+        System.out.println("7. Q7: Consultar un vertice");
         System.out.println("0. Salir");
-        System.out.print("Opción: ");
+        System.out.print("Opcion: ");
     }
 
     private static void q1(RedSeguraCore core, Scanner in) {
@@ -72,13 +72,13 @@ public class RedSeguraApplication {
 
     private static void q3(RedSeguraCore core) {
         System.out.println("Lista de adyacencia:\n" + core.adjacencyList());
-        System.out.println("Matriz de adyacencia ('.' = sin conexión):\n" + core.adjacencyMatrix());
+        System.out.println("Matriz de adyacencia ('.' = sin conexion):\n" + core.adjacencyMatrix());
         System.out.println("Matriz de incidencia (arco: -1 origen/+1 destino; arista: +1/+1):\n"
                 + core.incidenceMatrix());
     }
 
     private static void q4(RedSeguraCore core, Scanner in) {
-        System.out.print("Vértice de inicio [S02]: ");
+        System.out.print("Vertice de inicio [S02]: ");
         String start = in.nextLine().trim();
         if (start.isEmpty()) start = "S02";
         System.out.println("BFS: " + core.bfs(start));
@@ -94,7 +94,7 @@ public class RedSeguraApplication {
     private static void q6(RedSeguraCore core) {
         System.out.println("Antes del bloqueo:\n" + core.shortestRoute("S02", "S08"));
         core.blockEdge("R16");
-        System.out.println("R16 bloqueada. Después del bloqueo:\n" + core.shortestRoute("S02", "S08"));
+        System.out.println("R16 bloqueada. Despues del bloqueo:\n" + core.shortestRoute("S02", "S08"));
         System.out.println("El costo se mantiene porque existe otra ruta del mismo costo (24 min)");
         System.out.println("por S09 y S10; lo que cambia es el camino.");
         core.unblockEdge("R16");
@@ -102,7 +102,7 @@ public class RedSeguraApplication {
     }
 
     private static void q7(RedSeguraCore core, Scanner in) {
-        System.out.print("ID del vértice [S99]: ");
+        System.out.print("ID del vertice [S99]: ");
         String id = in.nextLine().trim();
         if (id.isEmpty()) id = "S99";
         System.out.println(core.describeVertex(id));   // lanza excepción si no existe: se atrapa en main
