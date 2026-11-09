@@ -59,8 +59,8 @@ public class RedSeguraCore {
         AvlTree<Integer> t = new AvlTree<>();
         for (int k : keys) t.insert(k);
         return name + ": claves " + java.util.Arrays.toString(keys)
-                + " -> rotación " + t.getRotationLog()
-                + ", raíz final " + t.rootKey()
+                + " -> rotacion " + t.getRotationLog()
+                + ", raiz final " + t.rootKey()
                 + ", preorden " + t.preOrder();
     }
 
