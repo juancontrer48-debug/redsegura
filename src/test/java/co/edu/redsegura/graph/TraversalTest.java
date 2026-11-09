@@ -35,11 +35,9 @@ class TraversalTest {
 
     @Test
     void bfsRespetaLaOrientacion() {
-        // Desde S08 solo se sale por R10 hacia S10 (R16 es S07->S08, no se puede devolver)
         BreadthFirstSearch.Result r = BreadthFirstSearch.run(g, "S08");
         assertEquals(1, r.getLevel().get("S10"));
-        assertFalse(r.getParent().containsValue("S08") && r.getParent().get("S07") != null
-                && r.getParent().get("S07").equals("S08") && r.getLevel().get("S07") == 1);
+        assertTrue(r.getLevel().get("S07") > 1);
     }
 
     @Test

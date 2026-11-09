@@ -78,11 +78,16 @@ La aplicación solo habla con `RedSeguraCore`. Ningún módulo lee campos privad
 | ABB insert, search, delete | O(h); peor caso O(n) | O(n) |
 | AVL insert, search, delete | O(log n) | O(n) |
 | Recorridos de árbol | O(n) | O(h) por recursión |
-| BFS y DFS (lista de adyacencia) | O(V + E) | O(V) |
+| BFS y DFS (recorrido desde un vértice) | O(V + E) | O(V) |
+| Componentes débiles y detección de ciclos (implementación actual) | O(V·E) | O(V) |
 | Dijkstra con PriorityQueue | O((V + E) log V) | O(V) |
 | Lista de adyacencia | construcción O(V + E) | O(V + E) |
-| Matriz de adyacencia | construcción O(V² + E) | O(V²) |
-| Matriz de incidencia | construcción O(V·E) | O(V·E) |
+| Matriz de adyacencia | construcción O(V² + E·V) | O(V²) |
+| Matriz de incidencia | construcción O(V·E + E·V) = O(V·E) | O(V·E) |
+
+Nota: `weakComponents` recorre todas las conexiones por cada vértice, y `indexOf` busca
+linealmente en una lista; por eso esos costos son O(V·E) y O(E·V). Con un `Map` de índices
+y listas de adyacencia bastaría O(V + E). Para V = 12 y E = 18 la diferencia es irrelevante.
 
 ## Medición (un computador, una corrida; varía entre ejecuciones)
 
@@ -104,3 +109,11 @@ calentamiento de la JVM.
 JUnit 5: 66 pruebas (modelo, grafo, representaciones, BFS/DFS, Dijkstra, ABB, AVL e
 integración). Cubren casos normales, vértice inexistente, IDs duplicados, pesos inválidos,
 grafo desconectado y bloqueo de conexiones.
+
+Evidencia: ![Resultado de pruebas](docs/pruebas.png)
+
+## Declaración de uso de herramientas
+
+Durante el desarrollo se usó un asistente de IA (Claude) como apoyo de orientación y
+revisión. El autor ejecutó, probó, integró y verificó el código, y puede explicarlo
+y modificarlo en la sustentación.
